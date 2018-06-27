@@ -1,0 +1,39 @@
+AllCops:
+  TargetRubyVersion: 2.3
+  DisplayCopNames: true
+  Exclude:
+    - "bin/*"
+    - "Gemfile.lock"
+
+Rails:
+  Enabled: true
+
+Style/Documentation:
+  Enabled: false
+
+Style/SymbolArray:
+  EnforcedStyle: brackets
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# temporary - bug in 0.57.2
+Layout/SpaceInsideArrayLiteralBrackets:
+  Enabled: false
+#  SupportedStyles: no_space
+#  SupportedStylesForEmptyBrackets: no_space
+
+Metrics/LineLength:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
+
+Metrics/ClassLength:
+  Enabled: false
+
+Metrics/ModuleLength:
+  Enabled: false
