@@ -5,4 +5,4 @@ require_relative 'config/application'
 
 Rails.application.load_tasks
 
-task(:default).clear.enhance ['rubocop', 'bundle:audit']
+task(:default).clear.enhance ['rubocop', 'bundle:audit', 'spec']
