@@ -15,8 +15,8 @@ RSpec.describe Api::Eduroam::AuthorizeController do
         subject
         expect(response.status).to eq(200)
         expected_data = {
-            'User-Name': record.login,
-            'Cleartext-Password': record.password
+          'User-Name': record.login,
+          'Cleartext-Password': record.password
         }
         expect(response_json).to match(expected_data)
       end
@@ -34,7 +34,6 @@ RSpec.describe Api::Eduroam::AuthorizeController do
 
         include_examples :responds_with_status, 500, head: true
       end
-
     end
 
     context 'when student' do
@@ -46,8 +45,8 @@ RSpec.describe Api::Eduroam::AuthorizeController do
         subject
         expect(response.status).to eq(200)
         expected_data = {
-            'User-Name': record.login,
-            'Cleartext-Password': record.password
+          'User-Name': record.login,
+          'Cleartext-Password': record.password
         }
         expect(response_json).to match(expected_data)
       end
@@ -65,8 +64,6 @@ RSpec.describe Api::Eduroam::AuthorizeController do
 
         include_examples :responds_with_status, 500, head: true
       end
-
     end
-
   end
 end

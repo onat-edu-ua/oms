@@ -21,5 +21,4 @@ class Employee < ApplicationRecord
   def display_name
     "#{id} | #{full_name}"
   end
-
 end

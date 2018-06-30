@@ -16,7 +16,6 @@
 require 'rails_helper'
 
 RSpec.describe AdminUser, type: :model do
-
   describe '.create' do
     subject do
       described_class.create(create_params)
@@ -36,10 +35,9 @@ RSpec.describe AdminUser, type: :model do
 
       include_examples :changes_records_count_of, described_class, by: 0
       include_examples :does_not_create_record, errors: {
-          email: "can't be blank"
+        email: "can't be blank"
       }
     end
-
   end
 
   describe '#update' do
@@ -74,5 +72,4 @@ RSpec.describe AdminUser, type: :model do
     include_examples :destroys_record
     include_examples :changes_records_count_of, described_class, by: -1
   end
-
 end

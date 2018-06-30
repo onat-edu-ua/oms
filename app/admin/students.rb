@@ -6,8 +6,8 @@ ActiveAdmin.register Student do
   filter :last_name
 
   filter :login_record_allowed_services_arr_contains, as: :select, label: 'Allowed Services',
-         input_html: { multiple: true, class: :chosen },
-         collection: -> { Service.ordered }
+                                                      input_html: { multiple: true, class: :chosen },
+                                                      collection: -> { Service.ordered }
 
   filter :login_record_login, label: 'Login'
   filter :created_at
@@ -31,7 +31,7 @@ ActiveAdmin.register Student do
         Rails.logger.error { "<#{e.class}>: #{e.message}\n#{e.backtrace.join("\n")}" }
       end
     end
-    if success_qty > 0 || ids.size.zero?
+    if success_qty.positive? || ids.size.zero?
       flash[:notice] = "#{success_qty}/#{ids.size} record were successfully destroyed."
     end
     flash[:error] = errors.join("\n") unless errors.empty?
@@ -54,7 +54,6 @@ ActiveAdmin.register Student do
 
   show do
     columns do
-
       column do
         attributes_table do
           row :id
@@ -79,7 +78,6 @@ ActiveAdmin.register Student do
           end
         end
       end
-
     end
   end
 
@@ -97,20 +95,19 @@ ActiveAdmin.register Student do
     f.inputs for: [:login_record, f.object.login_record || LoginRecord.new] do |c|
       c.input :login
       c.input :password, as: :string,
-              input_html: {
-                  class: 'js-fill-password',
-                  'data-password-length': 12
-              }
+                         input_html: {
+                           class: 'js-fill-password',
+                           'data-password-length': 12
+                         }
       c.input :allowed_services, as: :select,
-              collection: Service.ordered,
-              input_html: {
-                  multiple: true,
-                  class: 'chosen-with-opts',
-                  'data-chosen-opts': { width: '80%' }.to_json
-              }
+                                 collection: Service.ordered,
+                                 input_html: {
+                                   multiple: true,
+                                   class: 'chosen-with-opts',
+                                   'data-chosen-opts': { width: '80%' }.to_json
+                                 }
     end
 
     f.actions { f.submit }
   end
-
 end

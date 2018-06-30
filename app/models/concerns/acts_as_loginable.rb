@@ -17,5 +17,4 @@ module ActsAsLoginable
       [:login_record_allowed_services_arr_contains]
     end
   end
-
 end

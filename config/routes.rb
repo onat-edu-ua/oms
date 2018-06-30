@@ -12,5 +12,4 @@ Rails.application.routes.draw do
           constraints: { login: LoginRecord::CONST::LOGIN_REGEXP }
     end
   end
-
 end

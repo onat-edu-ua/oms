@@ -12,7 +12,6 @@
 require 'rails_helper'
 
 RSpec.describe Student, type: :model do
-
   describe '.create' do
     subject do
       described_class.create(create_params)
@@ -20,19 +19,19 @@ RSpec.describe Student, type: :model do
 
     let(:create_params) do
       {
-          first_name: 'John',
-          last_name: 'Doe',
-          login_record_attributes: {
-              login: 'john.doe',
-              password: 'password123',
-              allowed_services: ['', 2, nil, '1', 2]
-          }
+        first_name: 'John',
+        last_name: 'Doe',
+        login_record_attributes: {
+          login: 'john.doe',
+          password: 'password123',
+          allowed_services: ['', 2, nil, '1', 2]
+        }
       }
     end
 
     include_examples :creates_record do
       let(:expected_record_attrs) do
-        create_params.except(:login_record).merge(allowed_services: match_array([1,2]))
+        create_params.except(:login_record).merge(allowed_services: match_array([1, 2]))
       end
     end
     include_examples :changes_records_count_of, described_class, by: 1
@@ -42,10 +41,9 @@ RSpec.describe Student, type: :model do
 
       include_examples :changes_records_count_of, described_class, by: 0
       include_examples :does_not_create_record, errors: {
-          first_name: "can't be blank"
+        first_name: "can't be blank"
       }
     end
-
   end
 
   describe '#update' do
@@ -80,7 +78,7 @@ RSpec.describe Student, type: :model do
       let(:update_params) { { last_name: nil } }
 
       include_examples :does_not_update_record, errors: {
-          last_name: "can't be blank"
+        last_name: "can't be blank"
       }
     end
   end
@@ -96,5 +94,4 @@ RSpec.describe Student, type: :model do
     include_examples :changes_records_count_of, described_class, by: -1
     include_examples :changes_records_count_of, LoginRecord, by: -1
   end
-
 end

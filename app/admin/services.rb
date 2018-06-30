@@ -9,5 +9,4 @@ ActiveAdmin.register Service do
     column :created_at
     column :updated_at
   end
-
 end

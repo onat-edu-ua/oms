@@ -11,7 +11,6 @@
 
 FactoryBot.define do
   factory :student do
-
     first_name 'Jane'
     last_name 'Doe'
 
@@ -23,11 +22,10 @@ FactoryBot.define do
 
     after(:build) do |record, ev|
       record.assign_attributes(login_record_attributes: {
-          login: ev.login,
-          password: ev.password,
-          allowed_services: ev.allowed_services
-      })
+                                 login: ev.login,
+                                 password: ev.password,
+                                 allowed_services: ev.allowed_services
+                               })
     end
-
   end
 end

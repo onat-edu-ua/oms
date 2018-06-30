@@ -1,5 +1,4 @@
 class EduroamAuthorize
-
   class Error < StandardError
   end
 
@@ -27,13 +26,12 @@ class EduroamAuthorize
 
   def authorization_data_for(record)
     {
-        'User-Name': record.login,
-        'Cleartext-Password': record.password
+      'User-Name': record.login,
+      'Cleartext-Password': record.password
     }
   end
 
   def allowed_scope
     LoginRecord.allowed_services_arr_contains(Service::CONST::EDUROAM)
   end
-
 end
