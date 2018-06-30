@@ -290,4 +290,10 @@ ActiveAdmin.setup do |config|
   # You can inherit it with own class and inject it for all resources
   #
   # config.order_clause = MyOrderClause
+
+  # https://github.com/activeadmin-plugins/active_admin_sidebar
+  config.before_action do
+    left_sidebar! if respond_to?(:left_sidebar!)
+  end
+
 end

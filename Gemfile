@@ -38,6 +38,9 @@ gem 'activeadmin'
 gem 'devise'
 gem 'draper'
 
+# https://github.com/tsechingho/chosen-rails
+gem 'chosen-rails'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
