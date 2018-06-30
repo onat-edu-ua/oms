@@ -71,6 +71,7 @@ RSpec.describe Student, type: :model do
       include_examples :changes_records_count_of, described_class, by: 1
       include_examples :changes_records_count_of, LoginRecord, by: 1
     end
+
   end
 
   describe '#update' do
@@ -108,6 +109,7 @@ RSpec.describe Student, type: :model do
         last_name: "can't be blank"
       }
     end
+
   end
 
   describe '#destroy' do
@@ -121,4 +123,5 @@ RSpec.describe Student, type: :model do
     include_examples :changes_records_count_of, described_class, by: -1
     include_examples :changes_records_count_of, LoginRecord, by: -1
   end
+
 end
