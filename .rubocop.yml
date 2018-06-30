@@ -4,6 +4,7 @@ AllCops:
   Exclude:
     - "bin/*"
     - "Gemfile.lock"
+    - "vendor/bundle/**/*"
 
 Rails:
   Enabled: true

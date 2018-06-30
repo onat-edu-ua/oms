@@ -1,0 +1,32 @@
+language: ruby
+
+rvm:
+- 2.3.1
+
+services:
+  - docker
+
+git:
+  depth: false
+
+env:
+  secure: shWUqkoM+XpS7tJzxgAPIGvcB+EMmkRbLK/3eC3+OQtttX80HHORzs5wK6kOqkW4/1QGzVJvYeE8kV1CfLY0JFIRebWFiqwoLkEqt9I6wtek4fJADvjlS1BXjS7lr8HB+0dghwPXoOEp6mjtrt7yOc9/WLgsr+eV3/+UzFM8U5UoHQz0nzUCelf888cdpmOWKscbHyt+eyTBRwExWws+Nn46cwVNcohev0UULEune+VZt7b4zhQZSMYt7WRSVKluPm6DoMxMnBiTAp6oRXXBSUCMHStX+XlBKNIeKTvFjgAe2XFtfm9/AO+Ix6R7ZkmoxEx0iS9LUVukuh6ASNy9rZPDLJiZkSJ4VsDqR6sPPRdFYUsHBfK5rrWfa8zLNnop78lVC0SiehaKCZLNaWKT7vtZ5e9c2Osp42yV6/RmoQza5wu3oxhRJTRlJyV80JfnlY6GjV7t0ZY6iFVHT7hyR/qo46hIA/Vu7aOzjcnsqiGbAP/Aqn8BctPKfUF7ertYbplARRiPWwJCtQmhkC48xDQaVaMUocincFoxG6IgKtYnnuTgby/t7F87mhH7AsUO/rjJN+S/X+WN176UGllvdhaOVV8dde6cP5b9HuwKHSfAF4re+oPkKqUCjvTddwKoRoHCCQzTlWCGCF85BTzW1VIhPwCZKExAdRkhdUkQvAQ=
+  global:
+    - "OMS_DATABASE_NAME=oms_test_db"
+
+addons:
+  postgresql: 9.6
+
+before_script:
+  - cp config/database.ci.yml config/database.yml
+
+stages:
+  - test
+
+jobs:
+  include:
+    - stage: test
+      script:
+        - bundle install --jobs=3 --retry=3
+        - RAILS_ENV=test bundle exec rake db:test:prepare
+        - bundle exec rake
