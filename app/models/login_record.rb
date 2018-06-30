@@ -18,6 +18,12 @@
 #
 
 class LoginRecord < ApplicationRecord
+  module CONST
+    LOGIN_REGEXP = /[0-9A-Za-z\-_.]+/.freeze
+
+    freeze
+  end
+
   belongs_to :login_entity, polymorphic: true
 
   before_validation do
