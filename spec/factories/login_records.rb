@@ -3,9 +3,10 @@
 # Table name: login_records
 #
 #  id                :bigint(8)        not null, primary key
+#  allowed_services  :integer          default([]), not null, is an Array
 #  login             :string           not null
 #  login_entity_type :string           not null
-#  password_digest   :string           not null
+#  password          :string           not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  login_entity_id   :integer          not null

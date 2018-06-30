@@ -49,7 +49,7 @@ RSpec.describe AdminUser, type: :model do
 
     let!(:record) { FactoryBot.create(:admin_user) }
 
-    context 'change password' do
+    context 'change email' do
       let(:update_params) { { email: 'new.mail@example.com' } }
 
       include_examples :updates_record

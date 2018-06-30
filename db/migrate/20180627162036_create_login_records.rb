@@ -4,7 +4,8 @@ class CreateLoginRecords < ActiveRecord::Migration[5.2]
       t.integer :login_entity_id, null: false
       t.string :login_entity_type, null: false
       t.string :login, null: false
-      t.string :password_digest, null: false
+      t.string :password, null: false
+      t.integer :allowed_services, limit: 2, array: true, default: '{}', null: false
       t.timestamps null: false
     end
 

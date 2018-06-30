@@ -114,7 +114,6 @@ CREATE TABLE public.employees (
     id bigint NOT NULL,
     first_name character varying NOT NULL,
     last_name character varying NOT NULL,
-    allowed_services smallint[] DEFAULT '{}'::smallint[],
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -148,7 +147,8 @@ CREATE TABLE public.login_records (
     login_entity_id integer NOT NULL,
     login_entity_type character varying NOT NULL,
     login character varying NOT NULL,
-    password_digest character varying NOT NULL,
+    password character varying NOT NULL,
+    allowed_services smallint[] DEFAULT '{}'::smallint[] NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -221,7 +221,6 @@ CREATE TABLE public.students (
     id bigint NOT NULL,
     first_name character varying NOT NULL,
     last_name character varying NOT NULL,
-    allowed_services smallint[] DEFAULT '{}'::smallint[],
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -406,6 +405,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20180627160834'),
 ('20180627162036'),
 ('20180627193059'),
-('20180627193100');
+('20180627193100'),
+('20180628083820');
 
 

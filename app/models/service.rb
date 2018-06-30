@@ -9,4 +9,15 @@
 #
 
 class Service < ApplicationRecord
+  module CONST
+    EMAIL = 1
+    EDUROAM = 2
+    IDS = [EMAIL, EDUROAM].freeze
+
+    freeze
+  end
+
+  scope :ordered, -> do
+    order(name: :asc)
+  end
 end
