@@ -18,6 +18,12 @@
 #
 
 class LoginRecord < ApplicationRecord
+  module CONST
+    LOGIN_REGEXP = /[0-9A-Za-z\-_.]+/
+
+    freeze
+  end
+
   belongs_to :login_entity, polymorphic: true
 
   before_validation do
@@ -46,5 +52,4 @@ class LoginRecord < ApplicationRecord
   def self.ransackable_scopes(_auth = nil)
     [:allowed_services_arr_contains]
   end
-
 end

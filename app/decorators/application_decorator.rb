@@ -8,7 +8,6 @@ class ApplicationDecorator < Draper::Decorator
   end
 
   def comments_count
-    ActiveAdmin::Comment.where(resource_id: self.model.id.to_s, resource_type: self.model.class.to_s).count
+    ActiveAdmin::Comment.where(resource_id: model.id.to_s, resource_type: model.class.to_s).count
   end
-
 end

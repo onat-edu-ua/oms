@@ -17,6 +17,9 @@ Style/SymbolArray:
 Style/FrozenStringLiteralComment:
   Enabled: false
 
+Style/Lambda:
+  EnforcedStyle: literal
+
 # temporary - bug in 0.57.2
 Layout/SpaceInsideArrayLiteralBrackets:
   Enabled: false

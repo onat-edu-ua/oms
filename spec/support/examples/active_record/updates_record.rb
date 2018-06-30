@@ -4,8 +4,8 @@ RSpec.shared_examples :updates_record do
   it 'updates record' do
     subject
     expect(subject).to(
-        eq(true),
-        "expected subject to return, but returns false. Errors:\n#{record.errors.messages}"
+      eq(true),
+      "expected subject to return, but returns false. Errors:\n#{record.errors.messages}"
     )
     expect(record.errors).to be_empty
   end

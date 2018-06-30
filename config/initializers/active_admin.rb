@@ -295,5 +295,4 @@ ActiveAdmin.setup do |config|
   config.before_action do
     left_sidebar! if respond_to?(:left_sidebar!)
   end
-
 end

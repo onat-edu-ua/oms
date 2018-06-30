@@ -7,13 +7,13 @@ class StudentDecorator < ApplicationDecorator
   end
 
   def service_tags
-    allowed_service_names.map do |service|
+    html = allowed_service_names.map do |service|
       arbre { status_tag :yes, label: service }
-    end.join.html_safe
+    end
+    safe_join(html)
   end
 
   def login
     model.login_record.login
   end
-
 end
