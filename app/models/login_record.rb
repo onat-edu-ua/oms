@@ -27,15 +27,13 @@ class LoginRecord < ApplicationRecord
   belongs_to :login_entity, polymorphic: true
 
   before_validation do
-    if allowed_services_changed?
-      self.allowed_services = (allowed_services ? allowed_services.reject(&:nil?) : []).uniq
-    end
+    self.allowed_services = fixed_allowed_services if allowed_services_changed?
   end
 
   validates :login, :password, presence: true
   validates :login_entity, presence: true
   validate do
-    if (allowed_services - Service::CONST::IDS).any?
+    if services.count != allowed_services.size
       errors.add(:allowed_services, :invalid)
     end
   end
@@ -49,7 +47,22 @@ class LoginRecord < ApplicationRecord
     where("#{table_name}.allowed_services @> ?", encoded_data)
   end
 
+  scope :allowed_services_empty, ->(flag = true) do
+    flag = sanitized_ransack_scope_args(flag)
+    flag ? where(allowed_services: []) : where.not(allowed_services: [])
+  end
+
+  def services
+    Service.where(id: allowed_services)
+  end
+
   def self.ransackable_scopes(_auth = nil)
-    [:allowed_services_arr_contains]
+    [:allowed_services_arr_contains, :allowed_services_empty]
+  end
+
+  private
+
+  def fixed_allowed_services
+    (allowed_services ? allowed_services.reject(&:nil?) : []).uniq
   end
 end

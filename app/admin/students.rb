@@ -5,9 +5,18 @@ ActiveAdmin.register Student do
   filter :first_name
   filter :last_name
 
-  filter :login_record_allowed_services_arr_contains, as: :select, label: 'Allowed Services',
-                                                      input_html: { multiple: true, class: :chosen },
-                                                      collection: -> { Service.ordered }
+  filter :login_record_allowed_services_arr_contains,
+         as: :select, label: 'Allowed Services Contains',
+         input_html: { multiple: true, class: :chosen },
+         collection: -> { Service.ordered }
+
+  filter :login_record_allowed_services_empty,
+         as: :select, label: 'Allowed Services Empty',
+         collection: [['Yes', true], ['No', false]],
+         input_html: {
+           class: 'chosen-with-opts',
+           'data-chosen-opts': { disable_search: true }.to_json
+         }
 
   filter :login_record_login, label: 'Login'
   filter :created_at
