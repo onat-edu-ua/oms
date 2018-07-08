@@ -29,12 +29,20 @@ RSpec.describe Student, type: :model do
       }
     end
 
+    it 'creates login record with correct attributes' do
+      expect(subject.login_record).to be_persisted
+      expect(subject.login_record).to have_attributes(
+        login: 'john.doe',
+        password: 'password123',
+        allowed_services: match_array([1, 2])
+      )
+    end
+
     include_examples :creates_record do
-      let(:expected_record_attrs) do
-        create_params.except(:login_record).merge(allowed_services: match_array([1, 2]))
-      end
+      let(:expected_record_attrs) { create_params.except(:login_record_attributes) }
     end
     include_examples :changes_records_count_of, described_class, by: 1
+    include_examples :changes_records_count_of, LoginRecord, by: 1
 
     context 'without first_name' do
       let(:create_params) { super().merge first_name: '' }
@@ -43,6 +51,25 @@ RSpec.describe Student, type: :model do
       include_examples :does_not_create_record, errors: {
         first_name: "can't be blank"
       }
+    end
+
+    context 'without services' do
+      let(:create_params) { super().deep_merge login_record_attributes: { allowed_services: [] } }
+
+      it 'creates login record with correct attributes' do
+        expect(subject.login_record).to be_persisted
+        expect(subject.login_record).to have_attributes(
+          login: 'john.doe',
+          password: 'password123',
+          allowed_services: []
+        )
+      end
+
+      include_examples :creates_record do
+        let(:expected_record_attrs) { create_params.except(:login_record_attributes) }
+      end
+      include_examples :changes_records_count_of, described_class, by: 1
+      include_examples :changes_records_count_of, LoginRecord, by: 1
     end
   end
 

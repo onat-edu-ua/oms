@@ -10,11 +10,15 @@ module ActsAsLoginable
     scope :login_record_allowed_services_arr_contains, ->(*values) do
       joins(:login_record).merge(LoginRecord.allowed_services_arr_contains(*values))
     end
+
+    scope :login_record_allowed_services_empty, ->(flag = true) do
+      joins(:login_record).merge(LoginRecord.allowed_services_empty(flag))
+    end
   end
 
   class_methods do
     def ransackable_scopes(_auth = nil)
-      [:login_record_allowed_services_arr_contains]
+      [:login_record_allowed_services_arr_contains, :login_record_allowed_services_empty]
     end
   end
 end

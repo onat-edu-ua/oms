@@ -17,7 +17,7 @@ FactoryBot.define do
     transient do
       sequence(:login, 100) { |n| "jack.doe.#{n}" }
       password 'test-password'
-      allowed_services Service::CONST::IDS
+      allowed_services { Service.pluck(:id) }
     end
 
     after(:build) do |record, ev|
