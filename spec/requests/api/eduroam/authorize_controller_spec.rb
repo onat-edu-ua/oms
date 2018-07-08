@@ -11,20 +11,20 @@ RSpec.describe Api::Eduroam::AuthorizeController do
       let(:employee_attrs) { {} }
       let(:record) { employee.login_record }
 
+      include_examples :responds_with_status, 200, content_type: 'application/json'
+
       it 'responds with correct data for radius' do
         subject
-        expect(response.status).to eq(200)
-        expected_data = {
+        expect(response_json).to match(
           'User-Name': record.login,
           'Cleartext-Password': record.password
-        }
-        expect(response_json).to match(expected_data)
+        )
       end
 
       context 'without eduroam service' do
         let(:employee_attrs) { super().merge allowed_services: [Service::CONST::EMAIL] }
 
-        include_examples :responds_with_status, 404, head: true
+        include_examples :responds_with_status, 404, content_type: 'application/json'
       end
 
       context 'when error appears' do
@@ -32,7 +32,7 @@ RSpec.describe Api::Eduroam::AuthorizeController do
           expect(EduroamAuthorize).to receive(:authorize!).and_raise(StandardError, 'test error')
         end
 
-        include_examples :responds_with_status, 500, head: true
+        include_examples :responds_with_status, 500, content_type: 'application/json'
       end
     end
 
@@ -41,20 +41,20 @@ RSpec.describe Api::Eduroam::AuthorizeController do
       let(:student_attrs) { {} }
       let(:record) { student.login_record }
 
+      include_examples :responds_with_status, 200, content_type: 'application/json'
+
       it 'responds with correct data for radius' do
         subject
-        expect(response.status).to eq(200)
-        expected_data = {
+        expect(response_json).to match(
           'User-Name': record.login,
           'Cleartext-Password': record.password
-        }
-        expect(response_json).to match(expected_data)
+        )
       end
 
       context 'without eduroam service' do
         let(:student_attrs) { super().merge allowed_services: [Service::CONST::EMAIL] }
 
-        include_examples :responds_with_status, 404, head: true
+        include_examples :responds_with_status, 404, content_type: 'application/json'
       end
 
       context 'when error appears' do
@@ -62,7 +62,7 @@ RSpec.describe Api::Eduroam::AuthorizeController do
           expect(EduroamAuthorize).to receive(:authorize!).and_raise(StandardError, 'test error')
         end
 
-        include_examples :responds_with_status, 500, head: true
+        include_examples :responds_with_status, 500, content_type: 'application/json'
       end
     end
   end
