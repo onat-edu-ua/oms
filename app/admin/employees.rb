@@ -103,12 +103,14 @@ ActiveAdmin.register Employee do
 
     f.inputs for: [:login_record, f.object.login_record || LoginRecord.new] do |c|
       c.input :login
-      c.input :password, as: :string,
+      c.input :password,
+              as: :string,
               input_html: {
                   class: 'js-fill-password',
                   'data-password-length': 12
               }
-      c.input :allowed_services, as: :select,
+      c.input :allowed_services,
+              as: :select,
               collection: Service.ordered,
               input_html: {
                   multiple: true,

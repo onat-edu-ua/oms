@@ -26,8 +26,8 @@ class EduroamAuthorize
 
   def authorization_data_for(record)
     {
-      'User-Name': record.login,
-      'Cleartext-Password': record.password
+        'User-Name': record.login,
+        'Cleartext-Password': record.password
     }
   end
 

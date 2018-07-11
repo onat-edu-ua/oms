@@ -18,7 +18,6 @@
 #
 
 class LoginRecord < ApplicationRecord
-
   module CONST
     LOGIN_REGEXP = /[0-9A-Za-z\-_.]+/
 
@@ -66,5 +65,4 @@ class LoginRecord < ApplicationRecord
   def fixed_allowed_services
     (allowed_services ? allowed_services.reject(&:nil?) : []).uniq
   end
-
 end
