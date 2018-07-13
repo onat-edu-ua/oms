@@ -19,13 +19,13 @@ RSpec.describe Employee, type: :model do
 
     let(:create_params) do
       {
-        first_name: 'John',
-        last_name: 'Doe',
-        login_record_attributes: {
-          login: 'john.doe',
-          password: 'password123',
-          allowed_services: ['', 2, nil, '1', 2]
-        }
+          first_name: 'John',
+          last_name: 'Doe',
+          login_record_attributes: {
+              login: 'john.doe',
+              password: 'password123',
+              allowed_services: ['', 2, nil, '1', 2]
+          }
       }
     end
 
@@ -41,7 +41,7 @@ RSpec.describe Employee, type: :model do
 
       include_examples :changes_records_count_of, described_class, by: 0
       include_examples :does_not_create_record, errors: {
-        first_name: "can't be blank"
+          first_name: "can't be blank"
       }
     end
   end
@@ -78,7 +78,7 @@ RSpec.describe Employee, type: :model do
       let(:update_params) { { last_name: nil } }
 
       include_examples :does_not_update_record, errors: {
-        last_name: "can't be blank"
+          last_name: "can't be blank"
       }
     end
   end

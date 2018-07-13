@@ -6,7 +6,7 @@ ActiveAdmin.register Employee do
   filter :last_name
 
   filter :login_record_allowed_services_arr_contains,
-         as: :select, label: 'Allowed Services Contains',
+         as: :select, label: 'Allowed Services',
          input_html: { multiple: true, class: :chosen },
          collection: -> { Service.ordered }
 
@@ -14,8 +14,8 @@ ActiveAdmin.register Employee do
          as: :select, label: 'Allowed Services Empty',
          collection: [['Yes', true], ['No', false]],
          input_html: {
-           class: 'chosen-with-opts',
-           'data-chosen-opts': { disable_search: true }.to_json
+             class: 'chosen-with-opts',
+             'data-chosen-opts': { disable_search: true }.to_json
          }
 
   filter :login_record_login, label: 'Login'
@@ -103,18 +103,20 @@ ActiveAdmin.register Employee do
 
     f.inputs for: [:login_record, f.object.login_record || LoginRecord.new] do |c|
       c.input :login
-      c.input :password, as: :string,
-                         input_html: {
-                           class: 'js-fill-password',
-                           'data-password-length': 12
-                         }
-      c.input :allowed_services, as: :select,
-                                 collection: Service.ordered,
-                                 input_html: {
-                                   multiple: true,
-                                   class: 'chosen-with-opts',
-                                   'data-chosen-opts': { width: '80%' }.to_json
-                                 }
+      c.input :password,
+              as: :string,
+              input_html: {
+                  class: 'js-fill-password',
+                  'data-password-length': 12
+              }
+      c.input :allowed_services,
+              as: :select,
+              collection: Service.ordered,
+              input_html: {
+                  multiple: true,
+                  class: 'chosen-with-opts',
+                  'data-chosen-opts': { width: '80%' }.to_json
+              }
     end
 
     f.actions { f.submit }

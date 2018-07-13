@@ -4,9 +4,24 @@ AllCops:
   Exclude:
     - "bin/*"
     - "Gemfile.lock"
+    - "vendor/bundle/**/*"
 
 Rails:
   Enabled: true
+
+# temporary - bug in 0.57.2
+Layout/SpaceInsideArrayLiteralBrackets:
+  Enabled: false
+#  SupportedStyles: no_space
+#  SupportedStylesForEmptyBrackets: no_space
+
+Layout/IndentHash:
+  EnforcedStyle: consistent
+  IndentationWidth: 4
+
+Layout/IndentArray:
+  EnforcedStyle: consistent
+  IndentationWidth: 4
 
 Style/Documentation:
   Enabled: false
@@ -19,12 +34,6 @@ Style/FrozenStringLiteralComment:
 
 Style/Lambda:
   EnforcedStyle: literal
-
-# temporary - bug in 0.57.2
-Layout/SpaceInsideArrayLiteralBrackets:
-  Enabled: false
-#  SupportedStyles: no_space
-#  SupportedStylesForEmptyBrackets: no_space
 
 Metrics/LineLength:
   Enabled: false

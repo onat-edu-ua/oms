@@ -35,7 +35,7 @@ RSpec.describe AdminUser, type: :model do
 
       include_examples :changes_records_count_of, described_class, by: 0
       include_examples :does_not_create_record, errors: {
-        email: "can't be blank"
+          email: "can't be blank"
       }
     end
   end
@@ -57,7 +57,7 @@ RSpec.describe AdminUser, type: :model do
       let(:update_params) { { password: 'foo', password_confirmation: 'foo' } }
 
       include_examples :does_not_update_record, errors: {
-        password: 'is too short (minimum is 6 characters)'
+          password: 'is too short (minimum is 6 characters)'
       }
     end
   end
