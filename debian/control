@@ -1,0 +1,15 @@
+Source: onat-management-system
+Section: admin
+Priority: extra
+Maintainer: ONAT Admin <admin@onat.edu.ua>
+Build-Depends: debhelper (>= 10.2.5), ruby, ruby-dev, build-essential, devscripts, fakeroot, libpq-dev, zlib1g-dev, postgresql-client
+Standards-Version: 4.2.0
+Vcs-Browser: https://github.com/onat-edu-ua/oms
+
+Package: onat-management-system
+Architecture: all
+Multi-Arch: foreign
+Depends: ${shlibs:Depends}, ${misc:Depends}, ruby
+Pre-Depends: adduser
+Description: onat management system
+
