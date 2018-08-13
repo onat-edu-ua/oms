@@ -45,7 +45,7 @@ jobs:
       deploy:
         skip_cleanup: true
         provider: script
-        script: docker run --entrypoint /bin/bash oms:built deploy.sh "$API_ENDPOINT" stretch-onat stable main /local/build/*.deb
+        script: docker run --entrypoint /bin/bash oms:built deploy.sh "$API_ENDPOINT" "stretch-onat_stable_main" "stretch-onat/stretch" /local/build/*.deb
         on:
           tags: true
           repo: onat-edu-ua/oms
