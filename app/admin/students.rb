@@ -22,30 +22,7 @@ ActiveAdmin.register Student do
   filter :created_at
   filter :updated_at
 
-  batch_action :destroy, confirm: 'Are you sure that you want to destroy those record?' do |ids|
-    errors = []
-    success_qty = 0
-    scope = apply_authorization_scope(scoped_collection).where(id: ids)
-    scope.find_each do |record|
-      begin
-        record.destroy
-        if record.destroyed?
-          success_qty += 1
-        else
-          error = record.errors.any? ? record.errors.full_messages.to_sentence : 'Failed to destroy record'
-          errors.push("##{record.id} - #{error}")
-        end
-      rescue StandardError => e
-        errors.push("##{record.id} - <#{e.class}>: #{e.message}")
-        Rails.logger.error { "<#{e.class}>: #{e.message}\n#{e.backtrace.join("\n")}" }
-      end
-    end
-    if success_qty.positive? || ids.size.zero?
-      flash[:notice] = "#{success_qty}/#{ids.size} record were successfully destroyed."
-    end
-    flash[:error] = errors.join("\n") unless errors.empty?
-    redirect_back(fallback_location: admin_root_path)
-  end
+  extended_batch_destroy!
 
   includes(:login_record)
 

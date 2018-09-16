@@ -1,5 +1,6 @@
 class ApplicationRecord < ActiveRecord::Base
   self.abstract_class = true
+  include ExceptionHandler
 
   def self.sanitized_ransack_scope_args(args)
     args = args.map(&method(:sanitized_ransack_scope_args)) if args.is_a?(Array)

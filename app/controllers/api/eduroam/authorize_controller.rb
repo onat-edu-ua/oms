@@ -15,7 +15,7 @@ module Api
       end
 
       def server_error(err)
-        Rails.logger.error { "<#{err.class}>: #{err.message}\n#{err.backtrace.join("\n")}" }
+        log_error(err)
         render status: :internal_server_error, json: { Error: SERVER_ERROR_MESSAGE }
       end
     end
