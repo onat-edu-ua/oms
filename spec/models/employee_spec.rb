@@ -93,5 +93,16 @@ RSpec.describe Employee, type: :model do
     include_examples :destroys_record
     include_examples :changes_records_count_of, described_class, by: -1
     include_examples :changes_records_count_of, LoginRecord, by: -1
+
+    context 'when it has wifi sessions' do
+      before do
+        FactoryBot.create(:wifi_session, username: record.login_record.login)
+      end
+
+      include_examples :destroys_record
+      include_examples :changes_records_count_of, described_class, by: -1
+      include_examples :changes_records_count_of, LoginRecord, by: -1
+      include_examples :changes_records_count_of, WifiSession, by: 0
+    end
   end
 end
