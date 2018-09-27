@@ -246,6 +246,50 @@ ALTER SEQUENCE public.students_id_seq OWNED BY public.students.id;
 
 
 --
+-- Name: wifi_sessions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.wifi_sessions (
+    id bigint NOT NULL,
+    session_id character varying NOT NULL,
+    username character varying,
+    nas_ip_address character varying,
+    nas_identifier character varying,
+    called_station_id character varying,
+    calling_station_id character varying,
+    nas_port_type character varying,
+    connect_info character varying,
+    duration integer DEFAULT 0 NOT NULL,
+    packets_rx bigint DEFAULT 0 NOT NULL,
+    packets_tx bigint DEFAULT 0 NOT NULL,
+    bytes_rx bigint DEFAULT 0 NOT NULL,
+    bytes_tx bigint DEFAULT 0 NOT NULL,
+    updated_at timestamp with time zone DEFAULT now() NOT NULL,
+    created_at timestamp with time zone DEFAULT now() NOT NULL,
+    terminate_cause character varying
+);
+
+
+--
+-- Name: wifi_sessions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.wifi_sessions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: wifi_sessions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.wifi_sessions_id_seq OWNED BY public.wifi_sessions.id;
+
+
+--
 -- Name: active_admin_comments id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -285,6 +329,13 @@ ALTER TABLE ONLY public.services ALTER COLUMN id SET DEFAULT nextval('public.ser
 --
 
 ALTER TABLE ONLY public.students ALTER COLUMN id SET DEFAULT nextval('public.students_id_seq'::regclass);
+
+
+--
+-- Name: wifi_sessions id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wifi_sessions ALTER COLUMN id SET DEFAULT nextval('public.wifi_sessions_id_seq'::regclass);
 
 
 --
@@ -352,6 +403,14 @@ ALTER TABLE ONLY public.students
 
 
 --
+-- Name: wifi_sessions wifi_sessions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.wifi_sessions
+    ADD CONSTRAINT wifi_sessions_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: index_active_admin_comments_on_author_type_and_author_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -394,6 +453,13 @@ CREATE UNIQUE INDEX index_login_records_on_login_entity_id_and_login_entity_type
 
 
 --
+-- Name: index_wifi_sessions_on_session_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_wifi_sessions_on_session_id ON public.wifi_sessions USING btree (session_id);
+
+
+--
 -- PostgreSQL database dump complete
 --
 
@@ -406,6 +472,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20180627162036'),
 ('20180627193059'),
 ('20180627193100'),
-('20180628083820');
+('20180628083820'),
+('20180914155932');
 
 

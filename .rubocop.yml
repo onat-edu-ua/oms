@@ -35,6 +35,10 @@ Style/FrozenStringLiteralComment:
 Style/Lambda:
   EnforcedStyle: literal
 
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - spec/**/*.rb
+
 Metrics/LineLength:
   Enabled: false
 
@@ -49,3 +53,15 @@ Metrics/ClassLength:
 
 Metrics/ModuleLength:
   Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/CyclomaticComplexity:
+  Enabled: false
+
+Metrics/PerceivedComplexity:
+  Enabled: false
+
+Rails/CreateTableWithTimestamps:
+  Enabled: false # doesn't work properly with timestamptz

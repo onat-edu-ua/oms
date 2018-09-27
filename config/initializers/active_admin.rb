@@ -1,3 +1,9 @@
+require 'active_admin_patch/safe_redirect_back'
+require 'active_admin_patch/wrap_batch_action'
+require 'active_admin_patch/extended_batch_destroy'
+
+ActiveAdmin::BaseController.include ExceptionHandler
+
 ActiveAdmin.setup do |config|
   # == Site Title
   #

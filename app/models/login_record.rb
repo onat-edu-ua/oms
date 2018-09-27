@@ -25,6 +25,7 @@ class LoginRecord < ApplicationRecord
   end
 
   belongs_to :login_entity, polymorphic: true
+  has_many :wifi_sessions, inverse_of: :login_record, foreign_key: :username, primary_key: :login, dependent: false
 
   before_validation do
     self.allowed_services = fixed_allowed_services if allowed_services_changed?

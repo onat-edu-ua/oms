@@ -10,6 +10,11 @@ Rails.application.routes.draw do
           as: :authorize,
           format: :json,
           constraints: { login: LoginRecord::CONST::LOGIN_REGEXP }
+
+      post 'accounting/:session_id',
+           to: 'accounting#create',
+           as: :accounting,
+           format: :json
     end
   end
 end
