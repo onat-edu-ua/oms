@@ -24,6 +24,8 @@ ActiveAdmin.register WifiSession do
 
   index do
     id_column
+    column :created_at
+    column :updated_at
     column 'Session ID', :session_id, sortable: :session_id
     column :username, :login_link, sortable: :username
     column :connect_info
@@ -38,13 +40,13 @@ ActiveAdmin.register WifiSession do
     column :packets_tx
     column 'Called Station ID', :called_station_id, sortable: :called_station_id
     column 'Calling Station ID', :calling_station_id, sortable: :calling_station_id
-    column :created_at
-    column :updated_at
   end
 
   show do
     attributes_table do
       row :id
+      row :created_at
+      row :updated_at
       row 'Session ID' do
         resource.session_id
       end
@@ -67,8 +69,6 @@ ActiveAdmin.register WifiSession do
       row 'Calling Station ID' do
         resource.calling_station_id
       end
-      row :created_at
-      row :updated_at
     end
   end
 end
