@@ -1,10 +1,8 @@
 module Api
   module Eduroam
     class AccountingController < ApiController
-
-    #fix for  Can't verify CSRF token authenticity.
-    skip_before_action :verify_authenticity_token
-
+      # fix for  Can't verify CSRF token authenticity.
+      skip_before_action :verify_authenticity_token
 
       def create
         record = WifiSessionForm.new(permitted_params)

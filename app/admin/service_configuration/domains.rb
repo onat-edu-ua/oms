@@ -1,7 +1,7 @@
 ActiveAdmin.register Domain do
-  menu parent: "Services configuration", priority: 20
+  menu parent: 'Services configuration', priority: 20
 
-  #actions :index
+  # actions :index
   config.batch_actions = false
 
   permit_params :fqdn
@@ -31,5 +31,4 @@ ActiveAdmin.register Domain do
     end
     f.actions
   end
-
 end

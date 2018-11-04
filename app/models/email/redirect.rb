@@ -1,16 +1,12 @@
 class Email::Redirect < ApplicationRecord
+  self.table_name = 'email_redirects'
 
+  belongs_to :domain, class_name: 'Domain', foreign_key: :domain_id, inverse_of: :email_redirects
 
-  self.table_name='email_redirects'
-
-  belongs_to :domain, class_name: 'Domain', foreign_key: :domain_id
-
-  validates_presence_of :rewrited_destination, :username, :domain_id
-  validates_uniqueness_of :username, scope: :domain_id
-
+  validates :rewrited_destination, :username, :domain_id, presence: true
+  validates :username, uniqueness: { scope: :domain_id }
 
   def display_name
-    "#{rewrited_destination}"
+    rewrited_destination.to_s
   end
-
 end

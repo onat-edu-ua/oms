@@ -1,11 +1,10 @@
 ActiveAdmin.register Email::Redirect do
-  menu parent: "Services configuration", priority: 30
-  #actions :index
+  menu parent: 'Services configuration', priority: 30
+  # actions :index
   config.batch_actions = false
 
   includes :domain
   permit_params :username, :domain_id, :rewrited_destination
-
 
   filter :id
   filter :username
@@ -39,5 +38,4 @@ ActiveAdmin.register Email::Redirect do
     end
     f.actions
   end
-
 end

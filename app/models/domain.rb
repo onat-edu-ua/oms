@@ -1,14 +1,12 @@
 class Domain < ApplicationRecord
-  self.table_name='domains'
+  self.table_name = 'domains'
 
-  has_many :email_redirects, class_name: 'Email::Redirect', foreign_key: :domain_id, dependent: :restrict_with_error
+  has_many :email_redirects, class_name: 'Email::Redirect', foreign_key: :domain_id, inverse_of: :domain, dependent: :restrict_with_error
 
-  validates_presence_of :fqdn
-  validates_uniqueness_of :fqdn
-
+  validates :fqdn, presence: true
+  validates :fqdn, uniqueness: true
 
   def display_name
-    "#{fqdn}"
+    fqdn.to_s
   end
-
 end
