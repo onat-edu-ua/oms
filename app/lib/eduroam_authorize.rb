@@ -26,8 +26,9 @@ class EduroamAuthorize
 
   def authorization_data_for(record)
     {
-        'User-Name': record.login,
-        'Cleartext-Password': record.password
+        #        'User-Name': record.login,
+        'control:Cleartext-Password': record.password,
+        'Acct-Interim-Interval': 60
     }
   end
 
