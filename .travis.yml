@@ -21,6 +21,7 @@ addons:
 before_script:
   - cp config/database.ci.yml config/database.yml
   - cp config/secrets.yml.distr config/secrets.yml
+  - cp config/policy_roles.ci.yml config/policy_roles.yml
 
 stages:
   - test

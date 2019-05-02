@@ -71,7 +71,8 @@ CREATE TABLE public.admin_users (
     email character varying DEFAULT ''::character varying NOT NULL,
     encrypted_password character varying DEFAULT ''::character varying NOT NULL,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    role character varying NOT NULL
 );
 
 
@@ -473,6 +474,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20180627193059'),
 ('20180627193100'),
 ('20180628083820'),
-('20180914155932');
+('20180914155932'),
+('20190502185343');
 
 

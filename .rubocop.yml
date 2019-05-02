@@ -65,3 +65,6 @@ Metrics/PerceivedComplexity:
 
 Rails/CreateTableWithTimestamps:
   Enabled: false # doesn't work properly with timestamptz
+
+Rails/BulkChangeTable:
+  Enabled: false

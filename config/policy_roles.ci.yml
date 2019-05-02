@@ -1,0 +1,49 @@
+user:
+  ActiveAdmin/Comment:
+    read: true
+    create: true
+    update: true
+    destroy: true
+    perform: true
+  Dashboard:
+    read: true
+    create: true
+    update: true
+    destroy: true
+    perform: true
+  AdminUser/Self:
+    read: true
+    create: true
+    update: true
+    destroy: true
+    perform: true
+  AdminUser:
+    read: true
+    create: false
+    update: false
+    destroy: false
+    perform: true
+  Employee:
+    read: true
+    create: true
+    update: true
+    destroy: true
+    perform: true
+  Service:
+    read: true
+    create: true
+    update: true
+    destroy: true
+    perform: true
+  Student:
+    read: true
+    create: true
+    update: true
+    destroy: true
+    perform: true
+  WifiSession:
+    read: true
+    create: true
+    update: true
+    destroy: true
+    perform: true

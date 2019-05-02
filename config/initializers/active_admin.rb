@@ -1,6 +1,8 @@
-require 'active_admin_patch/safe_redirect_back'
-require 'active_admin_patch/wrap_batch_action'
-require 'active_admin_patch/extended_batch_destroy'
+require 'pundit_roles/active_admin_apply'
+
+Dir[Rails.root.join('lib', 'active_admin_patch', '*.rb')].each do |filename|
+  require filename
+end
 
 ActiveAdmin::BaseController.include ExceptionHandler
 
@@ -74,6 +76,7 @@ ActiveAdmin.setup do |config|
   # the name of default policy class. This policy will be used in every
   # case when Pundit is unable to find suitable policy.
   # config.pundit_default_policy = "MyDefaultPunditPolicy"
+  config.pundit_default_policy = 'DefaultApplicationPolicy'
 
   # You can customize your CanCan Ability class name here.
   # config.cancan_ability_class = "Ability"

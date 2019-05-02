@@ -2,6 +2,15 @@ class ApplicationForm
   include ActiveModel::Model
   include ExceptionHandler
 
+  class FormInvalid < StandardError
+    attr_reader :form
+
+    def initialize(form)
+      @form = form
+      super("Validation failed: #{form.errors.full_messages.to_sentence}.")
+    end
+  end
+
   class << self
     def attributes(*names)
       options = names.extract_options!
@@ -18,12 +27,14 @@ class ApplicationForm
   end
 
   def assign_attributes(params)
-    params.each do |key, value|
+    params.to_h.each do |key, value|
       public_send("#{key}=", value)
     end
   end
 
-  def save(validate: true)
+  def save(ctx = nil)
+    ctx ||= {}
+    validate = ctx.fetch(:validate, true)
     if !validate || valid?
       success = false
       catch(:error) do
@@ -34,6 +45,10 @@ class ApplicationForm
     else
       false
     end
+  end
+
+  def save!(ctx = nil)
+    save(ctx) || raise(FormInvalid, self)
   end
 
   # call throw(:error) for fail save process (#save method will return false)
