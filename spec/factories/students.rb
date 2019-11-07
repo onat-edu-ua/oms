@@ -11,12 +11,12 @@
 
 FactoryBot.define do
   factory :student do
-    first_name 'Jane'
-    last_name 'Doe'
+    first_name { 'Jane' }
+    last_name { 'Doe' }
 
     transient do
       sequence(:login, 100) { |n| "jack.doe.#{n}" }
-      password 'test-password'
+      password { 'test-password' }
       allowed_services { Service.pluck(:id) }
     end
 
