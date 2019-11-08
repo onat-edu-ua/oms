@@ -16,8 +16,8 @@ RSpec.describe Api::Eduroam::AuthorizeController do
       it 'responds with correct data for radius' do
         subject
         expect(response_json).to match(
-          'User-Name': record.login,
-          'Cleartext-Password': record.password
+          'control:Cleartext-Password': record.password,
+          'Acct-Interim-Interval': 60
         )
       end
 
@@ -46,8 +46,8 @@ RSpec.describe Api::Eduroam::AuthorizeController do
       it 'responds with correct data for radius' do
         subject
         expect(response_json).to match(
-          'User-Name': record.login,
-          'Cleartext-Password': record.password
+          'control:Cleartext-Password': record.password,
+          'Acct-Interim-Interval': 60
         )
       end
 
