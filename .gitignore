@@ -29,3 +29,4 @@
 
 /.rspec-local
 /spec/examples.txt
+.idea
