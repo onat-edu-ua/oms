@@ -36,5 +36,5 @@ en:
       long: "%Y-%m-%d"
   time:
     formats:
-    long: "%Y-%m-%d %H:%M:%S"
+      long: "%Y-%m-%d %H:%M:%S"
 
