@@ -2,11 +2,21 @@
 #
 # Table name: employees
 #
-#  id         :bigint(8)        not null, primary key
-#  first_name :string           not null
-#  last_name  :string           not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id              :bigint(8)        not null, primary key
+#  email           :string
+#  first_name      :string           not null
+#  inn             :string
+#  last_name       :string           not null
+#  middle_name     :string
+#  passport_number :string
+#  phone_number    :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+# Indexes
+#
+#  employees_inn_key              (inn) UNIQUE
+#  employees_passport_number_key  (passport_number) UNIQUE
 #
 
 FactoryBot.define do
