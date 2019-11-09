@@ -1,4 +1,5 @@
-class ApiController < ApplicationController
+class ApiController < ActionController::API
+  include ExceptionHandler
   rescue_from StandardError, with: :server_error
 
   def server_error(err)

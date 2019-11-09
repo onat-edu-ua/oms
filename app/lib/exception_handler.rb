@@ -8,6 +8,10 @@ module ExceptionHandler
         msg << "\n#{error.backtrace.join("\n")}" if backtrace
         msg
       end
+      if error.cause && error != error.cause
+        logger.error { 'Caused by:' }
+        log_error(error.cause, backtrace: backtrace)
+      end
     end
   end
 
