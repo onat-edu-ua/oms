@@ -5,6 +5,7 @@
 #  id                 :bigint(8)        not null, primary key
 #  email              :string           default(""), not null
 #  encrypted_password :string           default(""), not null
+#  role               :string           not null
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #

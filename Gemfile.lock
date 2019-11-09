@@ -5,6 +5,14 @@ GIT
     active_admin_sidebar (1.2.0)
       activeadmin
 
+GIT
+  remote: https://github.com/senid231/pundit_roles.git
+  revision: 809dcf93bf9f76a5f2247ddedd66f56eff8c536b
+  specs:
+    pundit_roles (0.1.0)
+      activesupport
+      pundit
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -188,6 +196,8 @@ GEM
       activerecord (>= 5.0)
     powerpack (0.1.2)
     puma (3.12.1)
+    pundit (2.1.0)
+      activesupport (>= 3.0.0)
     rack (2.0.7)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -337,6 +347,8 @@ DEPENDENCIES
   mini_racer
   pg (>= 0.18, < 2.0)
   puma (~> 3.11)
+  pundit
+  pundit_roles!
   rails (~> 5.2.2)
   rspec-rails (~> 3.7)
   rubocop (= 0.57.2)

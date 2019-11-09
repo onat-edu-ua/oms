@@ -41,6 +41,10 @@ gem 'draper'
 # https://github.com/tsechingho/chosen-rails
 gem 'chosen-rails'
 
+# Authorization for active_admin
+gem 'pundit'
+gem 'pundit_roles', github: 'senid231/pundit_roles'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
