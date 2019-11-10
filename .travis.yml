@@ -16,7 +16,7 @@ env:
     - secure: tmGqCSjSIBLR327Rq1hJM8j4sA/A2MqoASiO4EVfZxNH1n++gVwz/ZPuVt6fiZEC3sDpmX7JS1nvwIdqNm/X6FqzOeFdZRDIGa0zfpClK3ouFb1iszQZl9SRJJk+K9EQFlhfJzYfZZC5TntcSmoikRQJXW47YxBb9L+aIGTaFi1USf3HiTWKW5Au5izAmXUKB4YxEt99c+2bJihi9VClCjaBhk+jiJMU199GX1GhkWhHdlZIuacqHgRx2ZokmmJkZWB0/iRc7OUcqjK1/waRFD4rX4isSxqq4cLz1tSAXEvf/xW3rXkqpZZXiUX1Rehcb5RsIsYZwvnoum04UGOKpO+jUjiFZkUqqqSWiQyi3mSPrn7FZCrds8NvD7JG62lLx3mzOw1XVua6hrhBdSmw3jPxXh5mo0Iz9qjBUNZ088cVUZ7DuJ3T7bu0DaQAQDUfXAyMtTrB9Phc8VntDMnmAoXVvOnhs/HZLueu+62P1d949QXwslYwSpvwi5idNC+cl7gn2JCfa91xWf3jRDfWCtQW+u8a0sPQcTVdURLf+HfDY38zD7UF8PPOnB8hybLLe/3aKsPpnRQcD43kYXdS7uZuHv6YjQZnXEq6rwhVHxNm7x4OCJelvuVEhNHNfuH5vWW2X9VtNhMm3zzky7yp2f+QtWJ60oJmqK5VAcPQHJ8=
 
 addons:
-  postgresql: 9.6
+  postgresql: 10
 
 before_script:
   - cp config/database.ci.yml config/database.yml
@@ -38,8 +38,7 @@ jobs:
         - RAILS_ENV=test bundle exec rake db:test:prepare
         - bundle exec rake
 
-    - stage: package
-      if: tag is present
+    - stage: package build 
       script:
         - docker build -t oms .
         - docker run --name oms oms && docker commit oms oms:built
