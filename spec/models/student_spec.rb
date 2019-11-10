@@ -2,11 +2,23 @@
 #
 # Table name: students
 #
-#  id         :bigint(8)        not null, primary key
-#  first_name :string           not null
-#  last_name  :string           not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id              :bigint(8)        not null, primary key
+#  email           :string
+#  first_name      :string           not null
+#  inn             :string
+#  last_name       :string           not null
+#  middle_name     :string
+#  passport_number :string
+#  phone_number    :string
+#  ticket_number   :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+# Indexes
+#
+#  students_inn_key              (inn) UNIQUE
+#  students_passport_number_key  (passport_number) UNIQUE
+#  students_ticket_number_key    (ticket_number) UNIQUE
 #
 
 require 'rails_helper'
@@ -43,6 +55,34 @@ RSpec.describe Student, type: :model do
     end
     include_examples :changes_records_count_of, described_class, by: 1
     include_examples :changes_records_count_of, LoginRecord, by: 1
+
+    context 'with optional attributes' do
+      let(:create_params) do
+        super().merge middle_name: 'Jamesovich',
+                      email: 'john.doe@example.com',
+                      inn: '1234567890',
+                      passport_number: 'AZ123456',
+                      phone_number: '+987654321',
+                      ticket_number: '6781245774357'
+      end
+
+      it 'creates login record with correct attributes' do
+        expect(subject.login_record).to be_persisted
+        expect(subject.login_record).to have_attributes(
+          login: 'john.doe',
+          password: 'password123',
+          allowed_services: match_array([1, 2])
+        )
+      end
+
+      include_examples :creates_record do
+        let(:expected_record_attrs) do
+          create_params.except(:login_record).merge(allowed_services: match_array([1, 2]))
+        end
+      end
+      include_examples :changes_records_count_of, described_class, by: 1
+      include_examples :changes_records_count_of, LoginRecord, by: 1
+    end
 
     context 'without first_name' do
       let(:create_params) { super().merge first_name: '' }

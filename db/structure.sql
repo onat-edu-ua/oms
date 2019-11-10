@@ -116,7 +116,12 @@ CREATE TABLE public.employees (
     first_name character varying NOT NULL,
     last_name character varying NOT NULL,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    middle_name character varying,
+    passport_number character varying,
+    inn character varying,
+    phone_number character varying,
+    email character varying
 );
 
 
@@ -223,7 +228,13 @@ CREATE TABLE public.students (
     first_name character varying NOT NULL,
     last_name character varying NOT NULL,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    middle_name character varying,
+    ticket_number character varying,
+    passport_number character varying,
+    inn character varying,
+    phone_number character varying,
+    email character varying
 );
 
 
@@ -364,6 +375,22 @@ ALTER TABLE ONLY public.ar_internal_metadata
 
 
 --
+-- Name: employees employees_inn_key; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.employees
+    ADD CONSTRAINT employees_inn_key UNIQUE (inn);
+
+
+--
+-- Name: employees employees_passport_number_key; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.employees
+    ADD CONSTRAINT employees_passport_number_key UNIQUE (passport_number);
+
+
+--
 -- Name: employees employees_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -396,11 +423,35 @@ ALTER TABLE ONLY public.services
 
 
 --
+-- Name: students students_inn_key; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.students
+    ADD CONSTRAINT students_inn_key UNIQUE (inn);
+
+
+--
+-- Name: students students_passport_number_key; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.students
+    ADD CONSTRAINT students_passport_number_key UNIQUE (passport_number);
+
+
+--
 -- Name: students students_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.students
     ADD CONSTRAINT students_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: students students_ticket_number_key; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.students
+    ADD CONSTRAINT students_ticket_number_key UNIQUE (ticket_number);
 
 
 --
@@ -475,6 +526,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20180627193100'),
 ('20180628083820'),
 ('20180914155932'),
-('20190502185343');
+('20190502185343'),
+('20191109103205');
 
 

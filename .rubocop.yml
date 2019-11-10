@@ -35,6 +35,9 @@ Style/FrozenStringLiteralComment:
 Style/Lambda:
   EnforcedStyle: literal
 
+Style/GuardClause:
+  Enabled: false
+
 Lint/AmbiguousBlockAssociation:
   Exclude:
     - spec/**/*.rb

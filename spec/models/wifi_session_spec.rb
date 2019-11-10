@@ -28,5 +28,35 @@
 require 'rails_helper'
 
 RSpec.describe WifiSession, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe '.create' do
+    subject do
+      described_class.create(create_params)
+    end
+
+    let(:create_params) { { session_id: '123' } }
+
+    include_examples :creates_record
+    include_examples :changes_records_count_of, described_class, by: 1
+
+    context 'with optional attributes' do
+      let(:create_params) do
+        super().merge connect_info: 'connect_info',
+                      bytes_rx: '123',
+                      bytes_tx: '456',
+                      duration: '789',
+                      nas_identifier: 'nas_identifier',
+                      nas_ip_address: '127.0.0.1',
+                      nas_port_type: 'nas_port_type',
+                      packets_rx: '1234',
+                      packets_tx: '5678',
+                      terminate_cause: 'terminate_cause',
+                      username: 'username',
+                      called_station_id: 'called_station_id',
+                      calling_station_id: 'calling_station_id'
+      end
+
+      include_examples :creates_record
+      include_examples :changes_records_count_of, described_class, by: 1
+    end
+  end
 end

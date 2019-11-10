@@ -2,11 +2,23 @@
 #
 # Table name: students
 #
-#  id         :bigint(8)        not null, primary key
-#  first_name :string           not null
-#  last_name  :string           not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id              :bigint(8)        not null, primary key
+#  email           :string
+#  first_name      :string           not null
+#  inn             :string
+#  last_name       :string           not null
+#  middle_name     :string
+#  passport_number :string
+#  phone_number    :string
+#  ticket_number   :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+# Indexes
+#
+#  students_inn_key              (inn) UNIQUE
+#  students_passport_number_key  (passport_number) UNIQUE
+#  students_ticket_number_key    (ticket_number) UNIQUE
 #
 
 FactoryBot.define do
