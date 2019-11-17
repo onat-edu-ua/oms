@@ -56,6 +56,25 @@ RSpec.describe Student, type: :model do
     include_examples :changes_records_count_of, described_class, by: 1
     include_examples :changes_records_count_of, LoginRecord, by: 1
 
+    context 'with inn, ticket_number and passport_number as empty strings' do
+      let(:create_params) do
+        super().merge inn: '', passport_number: '', ticket_number: ''
+      end
+
+      include_examples :creates_record do
+        let(:expected_record_attrs) do
+          create_params.except(:login_record).merge(
+            inn: nil,
+            passport_number: '',
+            ticket_number: '',
+            allowed_services: match_array([1, 2])
+          )
+        end
+      end
+      include_examples :changes_records_count_of, described_class, by: 1
+      include_examples :changes_records_count_of, LoginRecord, by: 1
+    end
+
     context 'with optional attributes' do
       let(:create_params) do
         super().merge middle_name: 'Jamesovich',

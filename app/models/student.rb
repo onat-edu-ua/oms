@@ -24,6 +24,10 @@
 class Student < ApplicationRecord
   include ActsAsLoginable
 
+  attribute :inn, :string_presence
+  attribute :passport_number, :string_presence
+  attribute :ticket_number, :string_presence
+
   validates :first_name, :last_name, presence: true
   validates :inn, :passport_number, :ticket_number, uniqueness: true, allow_blank: true
 
