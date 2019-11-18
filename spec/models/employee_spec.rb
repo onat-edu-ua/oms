@@ -61,6 +61,12 @@ RSpec.describe Employee, type: :model do
         super().merge inn: '', passport_number: ''
       end
 
+      it 'creates employee with correct fields' do
+        expect { subject }.to change {
+          described_class.where(inn: nil, passport_number: nil).count
+        }.by(1)
+      end
+
       include_examples :creates_record do
         let(:expected_record_attrs) do
           create_params.except(:login_record).merge(inn: nil, passport_number: '', allowed_services: match_array([1, 2]))

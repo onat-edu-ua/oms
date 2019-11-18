@@ -2,8 +2,11 @@
 
 class StringPresenceType < ActiveRecord::Type::String
   def cast_value(value)
-    value = value.presence if value.is_a?(String)
-    super(value)
+    if value.is_a?(String) && value.blank?
+      nil
+    else
+      super(value)
+    end
   end
 end
 
